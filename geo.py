@@ -46,6 +46,8 @@ connection.close()
 
 # What TABLES do you need to have in the program?
 
+# Build in an Ardiuno attachment to scan for the current prosthetic barcode that the user has?
+
 print('Hello')
 
 def main():
