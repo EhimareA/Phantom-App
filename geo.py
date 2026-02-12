@@ -1,5 +1,8 @@
 import sqlite3
 
+
+def sensor
+
 # connecting to the database
 connection = sqlite3.connect("gfg.db")
 
