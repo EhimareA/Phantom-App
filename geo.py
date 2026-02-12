@@ -1,6 +1,6 @@
 import sqlite3
 
-scan = barcode # Look for the barcode to scan, also use ardiuno or rspbrrypi
+scan = light # Look for the barcode to scan, also use ardiuno or rspbrrypi
 
 def sensor(scan):
     print (barcode)
