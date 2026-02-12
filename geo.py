@@ -1,7 +1,10 @@
 import sqlite3
 
+scan = "Look for barcode"
 
-def sensor
+def sensor(scan):
+    print 
+
 
 # connecting to the database
 connection = sqlite3.connect("gfg.db")
