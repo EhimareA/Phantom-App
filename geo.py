@@ -1,9 +1,9 @@
 import sqlite3
 
-scan = "Look for barcode"
+scan = barcode # Look for the barcode to scan, also use ardiuno or rspbrrypi
 
 def sensor(scan):
-    print 
+    print (barcode)
 
 
 # connecting to the database
