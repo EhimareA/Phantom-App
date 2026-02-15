@@ -1,4 +1,4 @@
-import sqlite3
+import mysql.connector # change everything to mySQL
 
 scan = light # Look for the barcode to scan, also use ardiuno or rspbrrypi for the scanning purposes
 
