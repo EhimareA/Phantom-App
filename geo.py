@@ -4,6 +4,7 @@ scan = light # Look for the barcode to scan, also use ardiuno or rspbrrypi for t
 
 def sensor(scan):
     print (barcode)
+# NOT using any of this!!! Just to study it to understand how to write SQL code!!
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -15,34 +16,77 @@ mycursor = mydb.cursor()
 
 mycursor.execute("CREATE DATABASE mydatabase")
 
-# Check to make sure the database shows up in IDE
+DB_NAME = 'employees'
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="yourusername",
-  password="yourpassword"
-)
+TABLES = {}
+TABLES['employees'] = (
+    "CREATE TABLE `employees` ("
+    "  `emp_no` int(11) NOT NULL AUTO_INCREMENT,"
+    "  `birth_date` date NOT NULL,"
+    "  `first_name` varchar(14) NOT NULL,"
+    "  `last_name` varchar(16) NOT NULL,"
+    "  `gender` enum('M','F') NOT NULL,"
+    "  `hire_date` date NOT NULL,"
+    "  PRIMARY KEY (`emp_no`)"
+    ") ENGINE=InnoDB")
 
-mycursor = mydb.cursor()
+TABLES['departments'] = (
+    "CREATE TABLE `departments` ("
+    "  `dept_no` char(4) NOT NULL,"
+    "  `dept_name` varchar(40) NOT NULL,"
+    "  PRIMARY KEY (`dept_no`), UNIQUE KEY `dept_name` (`dept_name`)"
+    ") ENGINE=InnoDB")
 
-mycursor.execute("SHOW DATABASES")
+TABLES['salaries'] = (
+    "CREATE TABLE `salaries` ("
+    "  `emp_no` int(11) NOT NULL,"
+    "  `salary` int(11) NOT NULL,"
+    "  `from_date` date NOT NULL,"
+    "  `to_date` date NOT NULL,"
+    "  PRIMARY KEY (`emp_no`,`from_date`), KEY `emp_no` (`emp_no`),"
+    "  CONSTRAINT `salaries_ibfk_1` FOREIGN KEY (`emp_no`) "
+    "     REFERENCES `employees` (`emp_no`) ON DELETE CASCADE"
+    ") ENGINE=InnoDB")
 
-for x in mycursor:
-  print(x)
+TABLES['dept_emp'] = (
+    "CREATE TABLE `dept_emp` ("
+    "  `emp_no` int(11) NOT NULL,"
+    "  `dept_no` char(4) NOT NULL,"
+    "  `from_date` date NOT NULL,"
+    "  `to_date` date NOT NULL,"
+    "  PRIMARY KEY (`emp_no`,`dept_no`), KEY `emp_no` (`emp_no`),"
+    "  KEY `dept_no` (`dept_no`),"
+    "  CONSTRAINT `dept_emp_ibfk_1` FOREIGN KEY (`emp_no`) "
+    "     REFERENCES `employees` (`emp_no`) ON DELETE CASCADE,"
+    "  CONSTRAINT `dept_emp_ibfk_2` FOREIGN KEY (`dept_no`) "
+    "     REFERENCES `departments` (`dept_no`) ON DELETE CASCADE"
+    ") ENGINE=InnoDB")
 
-# Make a table, see if I can streamline and drop some code
+TABLES['dept_manager'] = (
+    "  CREATE TABLE `dept_manager` ("
+    "  `emp_no` int(11) NOT NULL,"
+    "  `dept_no` char(4) NOT NULL,"
+    "  `from_date` date NOT NULL,"
+    "  `to_date` date NOT NULL,"
+    "  PRIMARY KEY (`emp_no`,`dept_no`),"
+    "  KEY `emp_no` (`emp_no`),"
+    "  KEY `dept_no` (`dept_no`),"
+    "  CONSTRAINT `dept_manager_ibfk_1` FOREIGN KEY (`emp_no`) "
+    "     REFERENCES `employees` (`emp_no`) ON DELETE CASCADE,"
+    "  CONSTRAINT `dept_manager_ibfk_2` FOREIGN KEY (`dept_no`) "
+    "     REFERENCES `departments` (`dept_no`) ON DELETE CASCADE"
+    ") ENGINE=InnoDB")
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="yourusername",
-  password="yourpassword",
-  database="mydatabase"
-)
-
-mycursor = mydb.cursor()
-
-mycursor.execute("CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))")
-
+TABLES['titles'] = (
+    "CREATE TABLE `titles` ("
+    "  `emp_no` int(11) NOT NULL,"
+    "  `title` varchar(50) NOT NULL,"
+    "  `from_date` date NOT NULL,"
+    "  `to_date` date DEFAULT NULL,"
+    "  PRIMARY KEY (`emp_no`,`title`,`from_date`), KEY `emp_no` (`emp_no`),"
+    "  CONSTRAINT `titles_ibfk_1` FOREIGN KEY (`emp_no`)"
+    "     REFERENCES `employees` (`emp_no`) ON DELETE CASCADE"
+    ") ENGINE=InnoDB")
 
 def main():
     print("Hey! Listen")
