@@ -23,9 +23,10 @@ DB_NAME = 'prosthetics database'
 TABLES = {}
 TABLES['prosthethics'] = (
     "CREATE TABLE `prosthetics` ("
+    "  `pros_no` int(11) NOT NULL,"
     "  `model_date` date NOT NULL,"
     "  `prosthetic_name` varchar(14) NOT NULL,"
-    "  PRIMARY KEY (`emp_no`)"
+    "  PRIMARY KEY (`pros_no`)"
     ") ENGINE=InnoDB")
 
 TABLES['models'] = (
