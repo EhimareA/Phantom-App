@@ -24,16 +24,16 @@ TABLES = {}
 TABLES['prosthethics'] = (
     "CREATE TABLE `prosthetics` ("
     "  `pros_no` int(11) NOT NULL,"
-    "  `model_date` date NOT NULL,"
     "  `prosthetic_name` varchar(14) NOT NULL,"
     "  PRIMARY KEY (`pros_no`)"
     ") ENGINE=InnoDB")
 
 TABLES['models'] = (
     "CREATE TABLE `models` ("
-    "  `dept_no` char(4) NOT NULL,"
-    "  `dept_name` varchar(40) NOT NULL,"
-    "  PRIMARY KEY (`dept_no`), UNIQUE KEY `dept_name` (`dept_name`)"
+    "  `model_no` char(8) NOT NULL,"
+    "  `model_date` date NOT NULL,"
+    "  `model_name` varchar(40) NOT NULL,"
+    "  PRIMARY KEY (`model_no`), UNIQUE KEY `model_name` (`model_name`)"
     ") ENGINE=InnoDB")
 
 TABLES['brands'] = (
