@@ -43,8 +43,8 @@ TABLES['brands'] = (
     "  `from_date` date NOT NULL,"
     "  `to_date` date NOT NULL,"
     "  PRIMARY KEY (`brand_no`,`from_date`), KEY `brand_no` (`brand_no`),"
-    "  CONSTRAINT `salaries_ibfk_1` FOREIGN KEY (`emp_no`) "
-    "     REFERENCES `employees` (`emp_no`) ON DELETE CASCADE"
+    "  CONSTRAINT `brands_ibfk_1` FOREIGN KEY (`brand_no`) "
+    "     REFERENCES `brands` (`brand_no`) ON DELETE CASCADE"
     ") ENGINE=InnoDB")
 
 TABLES['prosthetics cost'] = (
