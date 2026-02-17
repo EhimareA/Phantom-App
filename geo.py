@@ -16,11 +16,13 @@ mycursor = mydb.cursor()
 
 mycursor.execute("CREATE DATABASE mydatabase")
 
-DB_NAME = 'employees'
+# Reformat until nothing looks like the original and understand everything!
+
+DB_NAME = 'prosthetics database'
 
 TABLES = {}
-TABLES['employees'] = (
-    "CREATE TABLE `employees` ("
+TABLES['prosthethics'] = (
+    "CREATE TABLE `prosthetics` ("
     "  `emp_no` int(11) NOT NULL AUTO_INCREMENT,"
     "  `birth_date` date NOT NULL,"
     "  `first_name` varchar(14) NOT NULL,"
@@ -30,15 +32,15 @@ TABLES['employees'] = (
     "  PRIMARY KEY (`emp_no`)"
     ") ENGINE=InnoDB")
 
-TABLES['departments'] = (
-    "CREATE TABLE `departments` ("
+TABLES['models'] = (
+    "CREATE TABLE `models` ("
     "  `dept_no` char(4) NOT NULL,"
     "  `dept_name` varchar(40) NOT NULL,"
     "  PRIMARY KEY (`dept_no`), UNIQUE KEY `dept_name` (`dept_name`)"
     ") ENGINE=InnoDB")
 
-TABLES['salaries'] = (
-    "CREATE TABLE `salaries` ("
+TABLES['brands'] = (
+    "CREATE TABLE `brands` ("
     "  `emp_no` int(11) NOT NULL,"
     "  `salary` int(11) NOT NULL,"
     "  `from_date` date NOT NULL,"
@@ -48,8 +50,8 @@ TABLES['salaries'] = (
     "     REFERENCES `employees` (`emp_no`) ON DELETE CASCADE"
     ") ENGINE=InnoDB")
 
-TABLES['dept_emp'] = (
-    "CREATE TABLE `dept_emp` ("
+TABLES['prosthetics cost'] = (
+    "CREATE TABLE `prosthetics cost` ("
     "  `emp_no` int(11) NOT NULL,"
     "  `dept_no` char(4) NOT NULL,"
     "  `from_date` date NOT NULL,"
