@@ -30,9 +30,9 @@ TABLES['prosthethics'] = (
 
 TABLES['models'] = (
     "CREATE TABLE `models` ("
-    "  `model_no` char(8) NOT NULL,"
+    "  `model_no` varchar(20) NOT NULL,"
     "  `model_date` date NOT NULL,"
-    "  `model_name` varchar(40) NOT NULL,"
+    "  `model_name` char(10) NOT NULL,"
     "  PRIMARY KEY (`model_no`), UNIQUE KEY `model_name` (`model_name`)"
     ") ENGINE=InnoDB")
 
